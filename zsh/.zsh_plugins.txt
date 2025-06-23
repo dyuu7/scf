@@ -2,7 +2,5 @@ rupa/z
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
-bckim92/zsh-autoswitch-conda
-conda-incubator/conda-zsh-completion kind:fpath
 belak/zsh-utils path:completion
 sindresorhus/pure
