@@ -14,7 +14,6 @@ Works on **Windows / macOS / Linux** and favors **fast startup** with **idempote
 
 ## Repository Layout
 ```
-
 .
 ├── Microsoft.PowerShell_profile.ps1
 ├── README.md
@@ -23,15 +22,14 @@ Works on **Windows / macOS / Linux** and favors **fast startup** with **idempote
 │   ├── install.ps1        # Link/copy profile to $PROFILE
 │   └── uninstall.ps1      # Remove created symlink (if any)
 └── theme.omp.json         # Optional: your oh-my-posh theme for full reproducibility
-
-````
+```
 
 ## Quick Start
 
 1. **Clone this repo**
    ```powershell
    git clone <your-repo-url> pwsh && cd pwsh
-````
+   ```
 
 2. **Install dependencies** (oh-my-posh / fnm / ZLocation).
    Skips what’s already installed; supports winget/brew/apt/etc.
