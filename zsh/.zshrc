@@ -1,63 +1,16 @@
-#!/usr/bin zsh
+typeset -U path
+path=($HOME/.local/bin $HOME/bin $HOME/.local/share/fnm $HOME/apps/CPLEX_Studio/cpoptimizer/bin/x86-64_linux $path)
 
-# helper function to safely add paths
-add_to_path() {
-  for dir in "$@"; do
-    [[ ":$PATH:" != *":$dir:"* ]] && export PATH="$dir:$PATH"
-  done
+export EDITOR=nvim HISTFILE=$HOME/.zsh_history HISTSIZE=10000 SAVEHIST=10000
+setopt share_history hist_ignore_dups
+
+[[ -f ~/.secrets ]] && source ~/.secrets
+
+_setup_history_keys() {
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
 }
 
-# --- PATH enhancements ---
-add_to_path \
-  "$HOME/.local/bin" \
-  "$HOME/bin" \
-  "$HOME/.local/share/fnm"
+[[ -f ${ZDOTDIR:-$HOME}/.zsh_plugins.zsh ]] && source ${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
 
-# --- uv setup ---
-install_uv() {
-    curl -LsSf https://astral.sh/uv/install.sh | sh -s -- -y
-}
-
-if ! command -v uv >/dev/null 2>&1; then
-    echo "Installing uv..."
-    install_uv
-fi
-
-# --- antidote setup ---
-antidote_dir="${ZDOTDIR:-$HOME}/.antidote"
-install_antidote() {
-    git clone --depth=1 https://github.com/mattmc3/antidote.git "$antidote_dir"
-}
-
-if [[ ! -d "$antidote_dir" ]]; then
-    echo "Installing antidote..."
-    install_antidote
-fi
-
-source "$antidote_dir/antidote.zsh"
-antidote load
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# --- fnm setup ---
-install_fnm() {
-    curl -fsSL https://fnm.vercel.app/install | bash
-}
-
-command -v fnm >/dev/null 2>&1 || install_fnm
-
-eval "$(fnm env --use-on-cd)"
-
-# --- environment variables ---
-export \
-  EDITOR=nvim \
-  HISTFILE="$HOME/.zsh_history" \
-  HISTSIZE=1000 \
-  SAVEHIST=1000
-
-# --- zsh options ---
-setopt \
-  append_history \
-  share_history \
-  hist_ignore_dups
+command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"

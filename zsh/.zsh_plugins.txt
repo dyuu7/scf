@@ -1,6 +1,6 @@
 rupa/z
-zsh-users/zsh-autosuggestions
-zdharma-continuum/fast-syntax-highlighting
-zsh-users/zsh-history-substring-search
-belak/zsh-utils path:completion
 sindresorhus/pure
+belak/zsh-utils path:completion
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search kind:defer post:_setup_history_keys
+zdharma-continuum/fast-syntax-highlighting kind:defer
